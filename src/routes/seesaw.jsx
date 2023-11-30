@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Engine, Render, Bodies, World } from 'matter-js'
+import { Engine, Render, Bodies, World, Body, Matter, Constraint, Vector } from 'matter-js'
 import React from 'react'
 import { Navbar } from '../components/navbar'
 
@@ -10,8 +10,8 @@ export const SeeSaw = (props) => {
 
     
   useEffect(() => {
-        const cw = 600;
-        const ch = 500;
+        const cw = 800;
+        const ch = 650;
 
         addSeeSaw();
 
@@ -21,7 +21,7 @@ export const SeeSaw = (props) => {
         options: {
             width: cw,
             height: ch,
-            wireframes: false,
+            wireframes: true,
             background: 'transparent'
         }
 
@@ -53,12 +53,26 @@ export const SeeSaw = (props) => {
 
 
   const addSeeSaw = () => {
-    const boxA = Bodies.rectangle(150, 450, 80, 80, { density: 0.005, render: { fillStyle: '#0000ff' }});
-    const boxB = Bodies.rectangle(450, 480, 80, 80, { density: 0.005});
+    //const boxA = Bodies.rectangle(150, 450, 80, 80, { density: 0.005, render: { fillStyle: '#0000ff' }});
+    //const boxB = Bodies.rectangle(450, 480, 80, 80, { density: 0.005});
+    var group = Body.nextGroup(true);
+    var catapult =  Bodies.rectangle(400, 520, 320, 20,{ collisionFilter: { group: group } });
+    var rectangle1 = Bodies.rectangle(400, 600, 800, 50.5, { isStatic: true, render: { fillStyle: '#060a19' } });
+    //var rectangle2 = Bodies.rectangle(250, 555, 20, 50, { isStatic: true, render: { fillStyle: '#060a19' } });
+    var rectangle3 = Bodies.rectangle(400, 535, 20, 80, { isStatic: true, collisionFilter: { group: group }, render: { fillStyle: '#060a19' } });
     
-
-
-    World.add(engine.current.world, [boxA, boxB]);
+    var weight1 = Bodies.rectangle(500, 480, 50,50, { density: 0.005});
+    var weight2 = Bodies.rectangle(300, 480, 50,50);
+    
+    //var circle1 = Bodies.circle(560, 100, 50, { density: 0.005 });
+    var constraint =  Constraint.create({ 
+        bodyA: catapult, 
+        pointB: Vector.clone(catapult.position),
+        stiffness: 1,
+        length: 0
+    });
+    World.add(engine.current.world, [weight1, weight2, constraint, catapult, group,rectangle1, rectangle3]);
+    //World.add(engine.current.world, [boxA, boxB]);
   }
 
   return (
