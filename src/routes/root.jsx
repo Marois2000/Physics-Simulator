@@ -18,7 +18,10 @@ export const Root = () => {
 
 
 
-            <ProblemCard link="/seesaw" title="See Saw" desc="Can you figure out how the boxes will balance?"/>
+            <div className="flex w-[70%] gap-10 flex-wrap justify-center items-center">
+                <ProblemCard link="/seesaw" title="See Saw" desc="Can you figure out how the boxes will balance?"/>
+                <ProblemCard link="/floatingball" title="Ball Float" desc="Is the ball going to sink, float, or stay perfectly balanced?"/>
+            </div>
 
         </div> 
     )

@@ -5,6 +5,7 @@ import './index.css';
 import { Root } from "./routes/root.jsx";
 import { About } from './routes/about.jsx';
 import { SeeSaw } from './routes/seesaw.jsx';
+import { FloatingBall } from './routes/floatingball.jsx';
 
 const router = createBrowserRouter([{
     path: "/",
@@ -18,6 +19,10 @@ const router = createBrowserRouter([{
   {
     path: "/seesaw",
     element: <SeeSaw />
+  },
+  {
+    path: "/floatingball",
+    element: <FloatingBall />
   }
 ]);
 
