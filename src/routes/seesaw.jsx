@@ -3,11 +3,12 @@ import { Engine, Render, Bodies, World } from 'matter-js'
 import React from 'react'
 import { Navbar } from '../components/navbar'
 
-export const About = (props) => {
+export const SeeSaw = (props) => {
   const scene = useRef()
   const isPressed = useRef(false)
   const engine = useRef(Engine.create())
 
+    
   useEffect(() => {
         const cw = 600;
         const ch = 500;
@@ -49,31 +50,7 @@ export const About = (props) => {
     }
   }, [])
 
-  const handleDown = () => {
-    isPressed.current = true
-  }
 
-  const handleUp = () => {
-    isPressed.current = false
-  }
-
-  const handleAddCircle = e => {
-    if (isPressed.current) {
-      const ball = Bodies.circle(
-        e.clientX / 2,
-        e.clientY / 2,
-        10 + Math.random() * 30,
-        {
-          mass: 10,
-          restitution: 0.9,
-          friction: 0.005,
-          render: {
-            fillStyle: '#0000ff'
-          }
-        })
-      World.add(engine.current.world, [ball])
-    }
-  }
 
   const addSeeSaw = () => {
     const boxA = Bodies.rectangle(150, 450, 80, 80, { density: 0.005, render: { fillStyle: '#0000ff' }});
@@ -90,9 +67,9 @@ export const About = (props) => {
 
         <div className=' bg-black w-full justify-center flex'>
             <div className='border-2 border-color-white h-fit'>
-                <div onMouseDown={handleDown}
-                    onMouseUp={handleUp}
-                    onMouseMove={handleAddCircle} ref={scene} />
+                <div 
+                   
+                    ref={scene} />
             </div>
             
         </div>
