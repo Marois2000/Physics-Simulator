@@ -5,7 +5,7 @@ import { ProblemCard } from "../components/problemcard";
 
 export const Root = () => {
     return (
-        <div className="flex flex-col justify-start items-center h-full w-full bg-black">
+        <div className="flex flex-col justify-start items-center h-full w-full bg-black ">
             <Navbar />
 
             
