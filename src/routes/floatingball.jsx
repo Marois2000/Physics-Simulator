@@ -71,7 +71,7 @@ export const FloatingBall = () => {
         const density = mass/volume;
         setBallD(density);
 
-        if(Math.random() > 0.5) {
+        if(Math.random() > 0.8) {
             setFluidD(Math.round(density));
             setBallD(Math.round(density));
         }
