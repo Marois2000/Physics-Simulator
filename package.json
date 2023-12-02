@@ -2,6 +2,7 @@
   "name": "-physics-simulator",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://marois2000.github.io/Physics-Simulator/",
   "type": "module",
   "scripts": {
     "dev": "vite",
