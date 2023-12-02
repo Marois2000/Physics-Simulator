@@ -146,6 +146,9 @@ export const FloatingBall = () => {
                 })
             ])
 
+            engine.current.gravity.y = 1;
+
+
             if(answer == 3) {
                 toast.success('You Got It! Great Job', {
                     position: "top-center",
@@ -196,7 +199,7 @@ export const FloatingBall = () => {
         }
     }
 
-    const resetWorld = () => {
+    const resetWorld = (refresh) => {
         const cw = 600;
         const ch = 500;
         World.clear(engine.current.world);
@@ -208,6 +211,10 @@ export const FloatingBall = () => {
             Bodies.rectangle(cw + 10, ch / 2, 20, ch, { isStatic: true }),
             Bodies.circle(cw/2, ch/2, 50, { isStatic: true, render: { fillStyle: "#ffffff"}})
         ]);
+
+        if(refresh) {
+            setMeasurements();
+        }
     }
 
 
@@ -220,7 +227,6 @@ export const FloatingBall = () => {
         console.log("Balanced");
     }
 
-    console.log("WORK")
 
     return (
         <div className='bg-black justify-center items-center flex flex-col min-h-screen'>
@@ -259,8 +265,8 @@ export const FloatingBall = () => {
 
                     <div className='w-full py-5 flex justify-start gap-5'>
                         <button onClick={() => floatBall()} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-green-500 hover:text-white duration-300'>Test</button>
-                        <button onClick={() => resetWorld()} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-blue-600 hover:text-white duration-300'>Reset Ball</button>
-                        <button onClick={() => navigate(0)} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-red-600 hover:text-white duration-300'>Restart</button>
+                        <button onClick={() => resetWorld(false)} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-blue-600 hover:text-white duration-300'>Reset Ball</button>
+                        <button onClick={() => resetWorld(true)} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-red-600 hover:text-white duration-300'>Restart</button>
                     </div>
                 </div>
                 
@@ -275,7 +281,6 @@ export const FloatingBall = () => {
 
             <ToastContainer
                 position="top-center"
-                limit={1}
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}
