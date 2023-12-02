@@ -220,6 +220,8 @@ export const FloatingBall = () => {
         console.log("Balanced");
     }
 
+    console.log("WORK")
+
     return (
         <div className='bg-black justify-center items-center flex flex-col min-h-screen'>
             <Navbar />
