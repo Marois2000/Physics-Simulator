@@ -8,7 +8,7 @@ import { SeeSaw } from './routes/seesaw.jsx';
 import { FloatingBall } from './routes/floatingball.jsx';
 
 const router = createBrowserRouter([{
-    path: "/",
+    path: "/Physics-Simulator/",
     element: <Root />,
     errorElement: <div><h1>No page found</h1></div>
   },
