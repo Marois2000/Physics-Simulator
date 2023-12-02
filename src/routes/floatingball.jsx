@@ -4,10 +4,12 @@ import React from 'react'
 import { Navbar } from '../components/navbar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 export const FloatingBall = () => {
     const scene = useRef();
     const engine = useRef(Engine.create());
+    const navigate = useNavigate();
 
     const [radius, setRadius] = useState();
     const [fluidD, setFluidD] = useState();
@@ -256,7 +258,7 @@ export const FloatingBall = () => {
                     <div className='w-full py-5 flex justify-start gap-5'>
                         <button onClick={() => floatBall()} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-green-500 hover:text-white duration-300'>Test</button>
                         <button onClick={() => resetWorld()} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-blue-600 hover:text-white duration-300'>Reset Ball</button>
-                        <button onClick={() => location.reload()} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-red-600 hover:text-white duration-300'>Restart</button>
+                        <button onClick={() => navigate(0)} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-red-600 hover:text-white duration-300'>Restart</button>
                     </div>
                 </div>
                 

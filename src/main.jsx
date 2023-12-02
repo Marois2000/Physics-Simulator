@@ -13,15 +13,15 @@ const router = createBrowserRouter([{
     errorElement: <div><h1>No page found</h1></div>
   },
   {
-    path: "/about",
+    path: "/Physics-Simulator/about",
     element: <About />
   },
   {
-    path: "/seesaw",
+    path: "/Physics-Simulator/seesaw",
     element: <SeeSaw />
   },
   {
-    path: "/floatingball",
+    path: "/Physics-Simulator/floatingball",
     element: <FloatingBall />
   }
 ]);

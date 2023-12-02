@@ -11,7 +11,7 @@ export const Navbar = () => {
             </div>
 
             <Link className="text-white text-2xl font-montserrat" to={"/Physics-Simulator/"}>Home</Link>
-            <Link className="text-white text-2xl font-montserrat" to={"/about"}>About</Link>
+            <Link className="text-white text-2xl font-montserrat" to={"/Physics-Simulator/about"}>About</Link>
             <Link className="text-white text-2xl font-montserrat" to={""}>Contact</Link>
 
 
