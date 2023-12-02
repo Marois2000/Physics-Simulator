@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
     return (
-        <div className="w-full justify-start items-center p-10 flex gap-[10rem] bg-black">
+        <div className="w-full justify-start items-center p-10 flex gap-20 bg-black">
             <div>
                 <h1 className="text-white font-montserrat text-5xl font-bold">Physics</h1>
                 <h1 className="text-white font-montserrat text-5xl font-bold ml-10">Simulator</h1>
