@@ -1,101 +1,51 @@
-import { useEffect, useRef } from 'react'
-import { Engine, Render, Bodies, World } from 'matter-js'
-import React from 'react'
-import { Navbar } from '../components/navbar'
-
-export const About = (props) => {
-  const scene = useRef()
-  const isPressed = useRef(false)
-  const engine = useRef(Engine.create())
-
-  useEffect(() => {
-        const cw = 600;
-        const ch = 500;
-
-        addSeeSaw();
-
-        const render = Render.create({
-        element: scene.current,
-        engine: engine.current,
-        options: {
-            width: cw,
-            height: ch,
-            wireframes: false,
-            background: 'transparent'
-        }
-
-        
-    })
-
-    World.add(engine.current.world, [
-      
-      Bodies.rectangle(cw / 2, -10, cw, 20, { isStatic: true }),
-      Bodies.rectangle(-10, ch / 2, 20, ch, { isStatic: true }),
-      Bodies.rectangle(cw / 2, ch + 10, cw, 20, { isStatic: true }),
-      Bodies.rectangle(cw + 10, ch / 2, 20, ch, { isStatic: true })
-    ])
-
-    Engine.run(engine.current)
-    Render.run(render)
-
-    return () => {
-      Render.stop(render)
-      World.clear(engine.current.world)
-      Engine.clear(engine.current)
-      render.canvas.remove()
-      render.canvas = null
-      render.context = null
-      render.textures = {}
-    }
-  }, [])
-
-  const handleDown = () => {
-    isPressed.current = true
-  }
-
-  const handleUp = () => {
-    isPressed.current = false
-  }
-
-  const handleAddCircle = e => {
-    if (isPressed.current) {
-      const ball = Bodies.circle(
-        e.clientX / 2,
-        e.clientY / 2,
-        10 + Math.random() * 30,
-        {
-          mass: 10,
-          restitution: 0.9,
-          friction: 0.005,
-          render: {
-            fillStyle: '#0000ff'
-          }
-        })
-      World.add(engine.current.world, [ball])
-    }
-  }
-
-  const addSeeSaw = () => {
-    const boxA = Bodies.rectangle(150, 450, 80, 80, { density: 0.005, render: { fillStyle: '#0000ff' }});
-    const boxB = Bodies.rectangle(450, 480, 80, 80, { density: 0.005});
-    
+import React from 'react';
+import { Navbar } from '../components/navbar';
+import hero from "../images/abouthero.jpeg";
+import him from "../images/einstein.jpg";
+import matter from "../images/matterjs.png";
 
 
-    World.add(engine.current.world, [boxA, boxB]);
-  }
+export const About = () => {
+  
 
   return (
-    <div className='w-[100%] h-[100%] bg-black'>
+    <div className='w-[100%] bg-black justify-start items-center flex flex-col'>
         <Navbar />
-
-        <div className=' bg-black w-full justify-center flex'>
-            <div className='border-2 border-color-white h-fit'>
-                <div onMouseDown={handleDown}
-                    onMouseUp={handleUp}
-                    onMouseMove={handleAddCircle} ref={scene} />
+        <div className='my-20 w-[90%] flex justify-between items-center'>
+            <div className='flex flex-col items-start justify-start h-full'>
+              <h1 className='text-3xl font-montserrat text-white'> <u>About Our Project</u> </h1>
+              <p className='text-xl font-montserrat text-white pt-5 max-w-[40ch]'>
+                This is a physics quiz style application, that tests all of your physics knowledge with various physics problems. <br /><br />
+                Your variables are always random allowing endless physics testing! <br /><br />
+                How problems can you solve?
+              </p>
             </div>
-            
+            <img className='w-[600px] rounded-md' src={hero} alt="Random physics equations and graphics" />
         </div>
+
+        
+
+        <div className='my-20 w-[90%] flex justify-between items-center'>
+            <img className='w-[600px] rounded-md' src={matter} alt="Random physics equations and graphics" />
+            <div className='flex flex-col items-end justify-start h-full'>
+              <h1 className='text-3xl font-montserrat text-white text-right'> <u>The Physics Engine</u> </h1>
+              <p className='text-xl font-montserrat text-white pt-5 max-w-[40ch] text-right'>
+                In order to simulate realistic physics we used a javascript physics library called <a href="https://brm.io/matter-js/"><u className=' font-semibold text-gray-400'>Matter JS</u></a> . <br /><br />
+                This is a full fledged physics engine built right into javascript that can simulate any 2D scenario you can think of!
+              </p>
+            </div>
+        </div>
+
+        <div className='my-20 w-[90%] flex justify-between items-center'>
+            <div className='flex flex-col items-start justify-start h-full'>
+              <h1 className='text-3xl font-montserrat text-white'> <u>Why Did We Make This?</u> </h1>
+              <p className='text-xl font-montserrat text-white pt-5 max-w-[40ch]'>
+                We wanted to combine our passion for coding with our new found skills in physics. <br /><br />
+              </p>
+            </div>
+            <img className='w-[600px] rounded-md' src={him} alt="Random physics equations and graphics" />
+        </div>
+        
     </div>
     
   )

@@ -6,3 +6,17 @@
   font-family: "Montserrat Alternates";
   src: url(./MontserratAlternates-Regular.ttf);
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}

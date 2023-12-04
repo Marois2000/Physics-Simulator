@@ -5,26 +5,31 @@ import './index.css';
 import { Root } from "./routes/root.jsx";
 import { About } from './routes/about.jsx';
 import { SeeSaw } from './routes/seesaw.jsx';
+import { FloatingBall } from './routes/floatingball.jsx';
 
 const router = createBrowserRouter([{
-    path: "/",
+    path: "/Physics-Simulator/",
     element: <Root />,
     errorElement: <div><h1>No page found</h1></div>
   },
   {
-    path: "/about",
+    path: "/Physics-Simulator/about",
     element: <About />
   },
   {
-    path: "/seesaw",
+    path: "/Physics-Simulator/seesaw",
     element: <SeeSaw />
+  },
+  {
+    path: "/Physics-Simulator/floatingball",
+    element: <FloatingBall />
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div className='w-full h-[100vh]'>
-      <RouterProvider router={router} />
+    <div className='w-full h-[100vh] '>
+      <RouterProvider router={router}  />
 
     </div>
   </React.StrictMode>,
