@@ -21,8 +21,8 @@ export const SeeSaw = (props) => {
         options: {
             width: cw,
             height: ch,
-            wireframes: true,
-            background: 'transparent'
+            wireframes: false,
+            background: 'White'
         }
 
         
@@ -61,7 +61,7 @@ export const SeeSaw = (props) => {
     //var rectangle2 = Bodies.rectangle(250, 555, 20, 50, { isStatic: true, render: { fillStyle: '#060a19' } });
     var rectangle3 = Bodies.rectangle(400, 535, 20, 80, { isStatic: true, collisionFilter: { group: group }, render: { fillStyle: '#060a19' } });
     
-    var weight1 = Bodies.rectangle(500, 480, 50,50, { density: 0.005});
+    var weight1 = Bodies.rectangle(500, 480, 50,50);
     var weight2 = Bodies.rectangle(300, 480, 50,50);
     
     //var circle1 = Bodies.circle(560, 100, 50, { density: 0.005 });
