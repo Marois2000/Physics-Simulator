@@ -16,7 +16,7 @@ export const SeeSaw = (props) => {
   const [randomXRight, setRandomXRight] = useState();
   const [massRight, setMassRight] = useState();
 
-
+  const [userInput, setUserInput] = useState();
 
 
 
@@ -75,7 +75,8 @@ export const SeeSaw = (props) => {
     setRandomXLeft(randomXLeft);
     setRandomMassLeft(randomMassLeft);
     setRandomXRight(randomXRight);
-    setMassRight(massRight)
+    setMassRight(massRight);
+    console.log("Mass Should be: " + massRight*1000);
 
    addSeeSaw(randomXLeft, randomMassLeft, randomXRight, massRight);
   }
@@ -143,12 +144,12 @@ export const SeeSaw = (props) => {
                 <div className='flex flex-col items-start justify-start w-[80%]'>
                     <h2 className='text-2xl font-montserrat text-white' id='userAnswer'><u>Enter your answer here:</u></h2> 
                     <label>
-                    <input type="number" name="name" /> <span className='text-lg font-montserrat text-white pt-5'>g</span>
+                    <input type="number" name="name" value={userInput} onChange={(e) => setUserInput(e.target.value)} /> <span className='text-lg font-montserrat text-white pt-5'>g</span>
                     </label>  
                 </div>
 
                 <div className='w-full py-5 flex justify-start gap-5'>
-                    <button onClick={() => checkAnswer(document.getElementById("userAnswer"))} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-green-500 hover:text-white duration-300'>Test</button>
+                    <button onClick={() => checkAnswer(userInput)} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-green-500 hover:text-white duration-300'>Test</button>
                     <button onClick={() => resetWorld(false)} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-blue-600 hover:text-white duration-300'>Reset Simulation</button>
                     <button onClick={() => resetWorld(true)} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-red-600 hover:text-white duration-300'>Restart</button>
                 </div>
