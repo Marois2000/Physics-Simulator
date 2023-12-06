@@ -24,7 +24,7 @@ export const SeeSaw = (props) => {
         const cw = 800;
         const ch = 650;
 
-        setMeasurements();
+        setMeasurements(true);
 
         const render = Render.create({
         element: scene.current,
@@ -60,16 +60,19 @@ export const SeeSaw = (props) => {
       render.textures = {}
     }
   }, [])
+  const clearSim = () =>{
+    World.clear(engine.current.world);
+    Engine.clear(engine.current);
 
-  const setMeasurements = () => {
+    
+  }
+  const setMeasurements = (freeze, reset) => {
+    
     const randomXLeft = Math.floor(Math.random() * 100) + 266;
-
     const randomMassLeft = Math.random() + .250;
-
     const randomXRight = Math.floor(Math.random() * 100) + 420;
-
     const massRight = (((400-randomXLeft*randomMassLeft*1000)/randomXRight-400)*-1)/1000;
-
+    
     console.log(Math.floor(massRight*1000) + 'g');
 
     setRandomXLeft(randomXLeft);
@@ -78,7 +81,10 @@ export const SeeSaw = (props) => {
     setMassRight(massRight);
     console.log("Mass Should be: " + massRight*1000);
 
-   addSeeSaw(randomXLeft, randomMassLeft, randomXRight, massRight);
+   addSeeSaw(randomXLeft, randomMassLeft, randomXRight, massRight, freeze);
+  }
+  const runSim = () => {
+    addSeeSaw(randomXLeft, randomMassLeft, randomXRight, massRight, false);
   }
   const checkAnswer = (userAnswer) => {
     if(userAnswer<(massRight*1000)+10&&userAnswer>(massRight*1000)-10){
@@ -94,6 +100,7 @@ export const SeeSaw = (props) => {
     });
     }
     else{
+      runSim();
       toast.error('That was wrong, try again!', {
         position: "top-center",
         autoClose: 5000,
@@ -106,12 +113,42 @@ export const SeeSaw = (props) => {
     });
     }
   }
-  const addSeeSaw = (xLeft, mLeft, xRight, mRight) => {
+
+  const resetWorld = (refresh) => {
+    const cw = 800;
+    const ch = 650;
+    if(refresh) {
+        setMeasurements(true);
+  }
+  else{
+      setMeasurements(false);
+  }
+
+    
+}
+
+  const addSeeSaw = (xLeft, mLeft, xRight, mRight, freeze) => {
+    if(freeze){
     var group = Body.nextGroup(true);
     var catapult =  Bodies.rectangle(400, 520, 320, 20,{ collisionFilter: { group: group } });
     var rectangle1 = Bodies.rectangle(400, 600, 800, 50.5, { isStatic: true, render: { fillStyle: '#060a19' } });
     var rectangle2 = Bodies.rectangle(400, 535, 20, 80, { isStatic: true, collisionFilter: { group: group }, render: { fillStyle: '#060a19' } });
-
+    var massLeft = Bodies.rectangle(xLeft, 485, 50,50,{ isStatic: true, mass: mLeft});
+    var massRight = Bodies.rectangle(xRight, 485, 50,50,{ isStatic: true, mass: mRight});
+    var constraint =  Constraint.create({ 
+        bodyA: catapult, 
+        pointB: Vector.clone(catapult.position),
+        stiffness: 1,
+        length: 0
+    });
+    World.add(engine.current.world, [massLeft, massRight, constraint, catapult, group,rectangle1, rectangle2]);
+  }
+  else{
+    
+    var group = Body.nextGroup(true);
+    var catapult =  Bodies.rectangle(400, 520, 320, 20,{ collisionFilter: { group: group } });
+    var rectangle1 = Bodies.rectangle(400, 600, 800, 50.5, { isStatic: true, render: { fillStyle: '#060a19' } });
+    var rectangle2 = Bodies.rectangle(400, 535, 20, 80, { isStatic: true, collisionFilter: { group: group }, render: { fillStyle: '#060a19' } });
     var massLeft = Bodies.rectangle(xLeft, 485, 50,50,{ isStatic: false, mass: mLeft});
     var massRight = Bodies.rectangle(xRight, 485, 50,50,{ isStatic: false, mass: mRight});
     var constraint =  Constraint.create({ 
@@ -122,7 +159,30 @@ export const SeeSaw = (props) => {
     });
     World.add(engine.current.world, [massLeft, massRight, constraint, catapult, group,rectangle1, rectangle2]);
   }
+  
+  }
 
+  /*
+const addSeeSaw = (xLeft, mLeft, xRight, mRight, freeze) => {
+    if(freeze){
+    var group = Body.nextGroup(true);
+    var catapult =  Bodies.rectangle(400, 520, 320, 20,{ collisionFilter: { group: group } });
+    var rectangle1 = Bodies.rectangle(400, 600, 800, 50.5, { isStatic: true, render: { fillStyle: '#060a19' } });
+    var rectangle2 = Bodies.rectangle(400, 535, 20, 80, { isStatic: true, collisionFilter: { group: group }, render: { fillStyle: '#060a19' } });
+    var massLeft = Bodies.rectangle(xLeft, 485, 50,50,{ isStatic: false, mass: mLeft});
+    var massRight = Bodies.rectangle(xRight, 485, 50,50,{ isStatic: false, mass: mRight});
+    var constraint =  Constraint.create({ 
+        bodyA: catapult, 
+        pointB: Vector.clone(catapult.position),
+        stiffness: 1,
+        length: 0
+    });
+    World.add(engine.current.world, [massLeft, massRight, constraint, catapult, group,rectangle1, rectangle2]);
+  }
+  else{
+
+  }
+  */
 
   return (
     <div className='bg-black justify-center items-center flex flex-col min-h-screen'>
