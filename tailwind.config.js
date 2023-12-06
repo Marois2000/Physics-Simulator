@@ -8,6 +8,9 @@ export default {
     extend: {
       fontFamily: {
         montserrat: ["Montserrat Alternates"]
+      },
+      colors: {
+        black: "#121212"
       }
     },
   },
