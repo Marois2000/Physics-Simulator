@@ -2,23 +2,29 @@ import { useEffect, useRef, useState } from 'react'
 import { Engine, Render, Bodies, World, Body, Matter, Constraint, Vector } from 'matter-js'
 import React from 'react'
 import { Navbar } from '../components/navbar'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const SeeSaw = (props) => {
   const scene = useRef()
   const isPressed = useRef(false)
   const engine = useRef(Engine.create())
 
-  const [randomX, setRandomX] = useState();
-  const setMeasurements = () => {
-    
-  }
+  const [randomXLeft, setRandomXLeft] = useState();
+  const [randomMassLeft, setRandomMassLeft] = useState();
+  const [randomXRight, setRandomXRight] = useState();
+  const [massRight, setMassRight] = useState();
+
+
+
+
 
     useEffect(() => {
         const cw = 800;
         const ch = 650;
 
-   
-        addSeeSaw();
+        setMeasurements();
 
         const render = Render.create({
         element: scene.current,
@@ -55,50 +61,121 @@ export const SeeSaw = (props) => {
     }
   }, [])
 
+  const setMeasurements = () => {
+    const randomXLeft = Math.floor(Math.random() * 100) + 266;
 
+    const randomMassLeft = Math.random() + .250;
 
-  const addSeeSaw = () => {
-    //const boxA = Bodies.rectangle(150, 450, 80, 80, { density: 0.005, render: { fillStyle: '#0000ff' }});
-    //const boxB = Bodies.rectangle(450, 480, 80, 80, { density: 0.005});
+    const randomXRight = Math.floor(Math.random() * 100) + 420;
+
+    const massRight = (((400-randomXLeft*randomMassLeft*1000)/randomXRight-400)*-1)/1000;
+
+    console.log(Math.floor(massRight*1000) + 'g');
+
+    setRandomXLeft(randomXLeft);
+    setRandomMassLeft(randomMassLeft);
+    setRandomXRight(randomXRight);
+    setMassRight(massRight)
+
+   addSeeSaw(randomXLeft, randomMassLeft, randomXRight, massRight);
+  }
+  const checkAnswer = (userAnswer) => {
+    if(userAnswer<(massRight*1000)+10&&userAnswer>(massRight*1000)-10){
+      toast.success('You Got It! Great Job', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    });
+    }
+    else{
+      toast.error('That was wrong, try again!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+    });
+    }
+  }
+  const addSeeSaw = (xLeft, mLeft, xRight, mRight) => {
     var group = Body.nextGroup(true);
     var catapult =  Bodies.rectangle(400, 520, 320, 20,{ collisionFilter: { group: group } });
     var rectangle1 = Bodies.rectangle(400, 600, 800, 50.5, { isStatic: true, render: { fillStyle: '#060a19' } });
-    //var rectangle2 = Bodies.rectangle(250, 555, 20, 50, { isStatic: true, render: { fillStyle: '#060a19' } });
     var rectangle2 = Bodies.rectangle(400, 535, 20, 80, { isStatic: true, collisionFilter: { group: group }, render: { fillStyle: '#060a19' } });
-    
-    var weight1 = Bodies.rectangle(500, 485, 50,50,{ isStatic: true});
-    //var weight2 = Bodies.rectangle(300, 490, 50,50,{ isStatic: true});
-    let randomX2 = Math.random()*100+266;
-    setRandomX(randomX2);
-    var weight2 = Bodies.rectangle(randomX2, 485, 50,50,{ isStatic: false} );
-    // Random Range from 266-365 2.66cm-3.65cm 4cm is center
-    
-    //var circle1 = Bodies.circle(560, 100, 50, { density: 0.005 });
+
+    var massLeft = Bodies.rectangle(xLeft, 485, 50,50,{ isStatic: false, mass: mLeft});
+    var massRight = Bodies.rectangle(xRight, 485, 50,50,{ isStatic: false, mass: mRight});
     var constraint =  Constraint.create({ 
         bodyA: catapult, 
         pointB: Vector.clone(catapult.position),
         stiffness: 1,
         length: 0
     });
-    World.add(engine.current.world, [weight1, weight2, constraint, catapult, group,rectangle1, rectangle2]);
-    //World.add(engine.current.world, [boxA, boxB]);
+    World.add(engine.current.world, [massLeft, massRight, constraint, catapult, group,rectangle1, rectangle2]);
   }
 
-  
 
   return (
-    <div className='w-[100%] h-[100%] bg-black'>
+    <div className='bg-black justify-center items-center flex flex-col min-h-screen'>
         <Navbar />
 
-        <div className=' bg-black w-full justify-center flex'>
-            <div className='border-2 border-color-white h-fit'>
-                <div 
-                   
-                    ref={scene} />
+        <div className='my-10 w-[85%]'>
+            <h1 className='text-2xl font-montserrat text-white'> <u>The Seesaw Problem</u> </h1>
+            <p className='text-lg font-montserrat text-white pt-5'>
+               
+                The leftmost cube weighs <u>{Math.floor(randomMassLeft*1000)} g</u> and <u>{400-randomXLeft} cm</u> away from the pivot of the Seesaw. <br /> <br />
+                
+                If the rightmost cube is <u>{randomXRight-400} cm</u> away from the pivot how much should it weigh to balance the seesaw?
+            </p>
+            <h3 className='font-montserrat text-white pt-10'><u>Note:</u> round to the nearest whole number!</h3>
+        </div>
+
+        <div className='flex justify-between w-[85%] gap-10'>
+            <div className='w-full justify-around flex flex-col'>
+                <div className='flex flex-col items-start justify-start w-[80%]'>
+                    <h2 className='text-2xl font-montserrat text-white' id='userAnswer'><u>Enter your answer here:</u></h2> 
+                    <label>
+                    <input type="number" name="name" /> <span className='text-lg font-montserrat text-white pt-5'>g</span>
+                    </label>  
+                </div>
+
+                <div className='w-full py-5 flex justify-start gap-5'>
+                    <button onClick={() => checkAnswer(document.getElementById("userAnswer"))} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-green-500 hover:text-white duration-300'>Test</button>
+                    <button onClick={() => resetWorld(false)} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-blue-600 hover:text-white duration-300'>Reset Simulation</button>
+                    <button onClick={() => resetWorld(true)} className='text-black text-2xl bg-white py-2 px-3 rounded-md font-montserrat hover:bg-red-600 hover:text-white duration-300'>Restart</button>
+                </div>
             </div>
             
+
+            <div className='w-full justify-end flex'>
+                <div className='border-2 border-color-white h-fit'>
+                    <div ref={scene} />
+                </div>
+            </div>
         </div>
+        
+        <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+      
     </div>
-    
-  )
+)
+
 }
