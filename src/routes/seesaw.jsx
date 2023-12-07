@@ -63,8 +63,6 @@ export const SeeSaw = (props) => {
   const clearSim = () =>{
     World.clear(engine.current.world);
     Engine.clear(engine.current);
-
-    
   }
   const setMeasurements = (freeze, reset) => {
     
@@ -117,15 +115,17 @@ export const SeeSaw = (props) => {
   const resetWorld = (refresh) => {
     const cw = 800;
     const ch = 650;
+    World.clear(engine.current.world);
+
     if(refresh) {
         setMeasurements(true);
-  }
-  else{
-      setMeasurements(false);
-  }
+    }
+    else{
+        setMeasurements(false);
+    }
 
-    
-}
+      
+  }
 
   const addSeeSaw = (xLeft, mLeft, xRight, mRight, freeze) => {
     if(freeze){
