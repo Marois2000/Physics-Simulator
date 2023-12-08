@@ -6,11 +6,16 @@ import { Root } from "./routes/root.jsx";
 import { About } from './routes/about.jsx';
 import { SeeSaw } from './routes/seesaw.jsx';
 import { FloatingBall } from './routes/floatingball.jsx';
+import { Problems } from './routes/problems.jsx';
 
 const router = createBrowserRouter([{
     path: "/Physics-Simulator/",
     element: <Root />,
     errorElement: <div><h1>No page found</h1></div>
+  },
+  {
+    path: "/Physics-Simulator/problems",
+    element: <Problems />
   },
   {
     path: "/Physics-Simulator/about",

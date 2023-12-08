@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Montserrat Alternates";
-  src: url(./MontserratAlternates-Regular.ttf);
+  font-family: "Montserrat";
+  src: url(./Montserrat-Variable.ttf);
 }
+
 
 ::-webkit-scrollbar {
   width: 10px;

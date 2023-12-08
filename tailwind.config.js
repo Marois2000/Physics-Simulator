@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        montserrat: ["Montserrat Alternates"]
+        montserrat: ["Montserrat"]
       },
       colors: {
         black: "#121212"

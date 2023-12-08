@@ -85,6 +85,8 @@ export const SeeSaw = (props) => {
     addSeeSaw(randomXLeft, randomMassLeft, randomXRight, massRight, false);
   }
   const checkAnswer = (userAnswer) => {
+    clearSim();
+    addSeeSaw(randomXLeft,randomMassLeft,randomXRight,null,true);
     if(userAnswer<(massRight*1000)+10&&userAnswer>(massRight*1000)-10){
       toast.success('You Got It! Great Job', {
         position: "top-center",
@@ -98,6 +100,7 @@ export const SeeSaw = (props) => {
     });
     }
     else{
+      clearSim();
       runSim();
       toast.error('That was wrong, try again!', {
         position: "top-center",
@@ -115,14 +118,17 @@ export const SeeSaw = (props) => {
   const resetWorld = (refresh) => {
     const cw = 800;
     const ch = 650;
-    World.clear(engine.current.world);
+    clearSim();
+
+    document.getElementById('userInput').value = "";
+
 
     if(refresh) {
         setMeasurements(true);
     }
     else{
-        setMeasurements(false);
-    }
+      addSeeSaw(randomXLeft,randomMassLeft,randomXRight,null,true);
+        }
 
       
   }
@@ -204,7 +210,7 @@ const addSeeSaw = (xLeft, mLeft, xRight, mRight, freeze) => {
                 <div className='flex flex-col items-start justify-start w-[80%]'>
                     <h2 className='text-2xl font-montserrat text-white' id='userAnswer'><u>Enter your answer here:</u></h2> 
                     <label>
-                    <input type="number" name="name" value={userInput} onChange={(e) => setUserInput(e.target.value)} /> <span className='text-lg font-montserrat text-white pt-5'>g</span>
+                    <input type="number" id="userInput" name="name" value={userInput} onChange={(e) => setUserInput(e.target.value)} /> <span className='text-lg font-montserrat text-white pt-5'>g</span>
                     </label>  
                 </div>
 
