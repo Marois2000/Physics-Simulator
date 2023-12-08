@@ -29,7 +29,7 @@ export const Root = () => {
             </div>
 
             <div className="w-[70%] flex flex-col justify-center items-center  py-20">
-                <h2 className="text-white font-montserrat text-4xl font-bold pb-10"><u>Try A Problem</u></h2>
+                <h2 className="text-white font-montserrat text-5xl font-bold pb-10">Try A Problem</h2>
                 <div className="flex w-full gap-20 flex-wrap justify-center items-center">
                     <ProblemCard link="/Physics-Simulator/seesaw" title="See Saw" desc="Can you figure out how the boxes will balance?" img={seesawIMG}/>
                     <ProblemCard link="/Physics-Simulator/floatingball" title="Ball Float" desc="Is the ball going to sink, float, or stay perfectly balanced?" img={ballfloatIMG}/>
