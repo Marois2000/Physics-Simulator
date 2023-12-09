@@ -5,6 +5,8 @@ import { Navbar } from '../components/navbar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { Footer } from "../components/footer";
+
 
 export const FloatingBall = () => {
     const scene = useRef();
@@ -229,7 +231,7 @@ export const FloatingBall = () => {
 
 
     return (
-        <div className='bg-black justify-center items-center flex flex-col min-h-screen'>
+        <div className='bg-black justify-center items-center flex flex-col min-h-screen select-none'>
             <Navbar />
 
             <div className='my-10 w-[85%]'>
@@ -291,6 +293,8 @@ export const FloatingBall = () => {
                 pauseOnHover
                 theme="light"
             />
+                            <Footer />
+
         </div>
     )
 }

@@ -4,6 +4,7 @@ import React from 'react'
 import { Navbar } from '../components/navbar'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Footer } from "../components/footer";
 
 
 export const SeeSaw = (props) => {
@@ -191,7 +192,7 @@ const addSeeSaw = (xLeft, mLeft, xRight, mRight, freeze) => {
   */
 
   return (
-    <div className='bg-black justify-center items-center flex flex-col min-h-screen'>
+    <div className='bg-black justify-center items-center flex flex-col min-h-screen select-none'>
         <Navbar />
 
         <div className='my-10 w-[85%]'>
@@ -241,7 +242,7 @@ const addSeeSaw = (xLeft, mLeft, xRight, mRight, freeze) => {
                 pauseOnHover
                 theme="light"
             />
-      
+      <Footer />
     </div>
 )
 

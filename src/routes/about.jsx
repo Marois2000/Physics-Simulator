@@ -3,13 +3,14 @@ import { Navbar } from '../components/navbar';
 import hero from "../images/abouthero.jpeg";
 import him from "../images/einstein.jpg";
 import matter from "../images/matterjs.png";
+import { Footer } from "../components/footer";
 
 
 export const About = () => {
   
 
   return (
-    <div className='w-[100%] bg-black justify-start items-center flex flex-col'>
+    <div className='w-[100%] bg-black justify-start items-center flex flex-col select-none'>
         <Navbar />
         <div className='my-20 w-[90%] flex justify-between items-center'>
             <div className='flex flex-col items-start justify-start h-full'>
@@ -45,7 +46,7 @@ export const About = () => {
             </div>
             <img className='w-[600px] rounded-md' src={him} alt="Random physics equations and graphics" />
         </div>
-        
+        <Footer />
     </div>
     
   )

@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { Navbar } from "../components/navbar";
 import { ProblemCard } from "../components/problemcard";
 import { CyclePhysics } from "../components/cyclephysics";
+import { Footer } from "../components/footer";
+
 // Image Imports
 import seesawIMG from "../images/SeeSaw.png";
 import ballfloatIMG from "../images/Ball Float.png";
 
 export const Problems = () => {
     return(
-        <div className="flex flex-col justify-start items-center w-full h-full bg-black ">
+        <div className="flex flex-col justify-start items-center w-full h-full bg-black select-none">
             <Navbar />
         <div className="w-[70%] flex flex-col justify-center items-center  py-20">
                 <h2 className="text-white font-montserrat text-4xl font-bold pb-10">Problems</h2>
@@ -18,6 +20,7 @@ export const Problems = () => {
                     <ProblemCard link="/Physics-Simulator/floatingball" title="Ball Float" desc="Is the ball going to sink, float, or stay perfectly balanced?" img={ballfloatIMG}/>
                 </div>
         </div>
+        <Footer />
         </div>
     )  
 }

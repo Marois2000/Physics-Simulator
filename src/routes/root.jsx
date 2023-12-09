@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar } from "../components/navbar";
 import { ProblemCard } from "../components/problemcard";
 import { CyclePhysics } from "../components/cyclephysics";
+import { Footer } from "../components/footer";
 // Image Imports
 import seesawIMG from "../images/SeeSaw.png";
 import ballfloatIMG from "../images/Ball Float.png";
@@ -11,7 +12,7 @@ import ballfloatIMG from "../images/Ball Float.png";
 
 export const Root = () => {
     return (
-        <div className="flex flex-col justify-start items-center w-full bg-black ">
+        <div className="flex flex-col justify-start items-center w-full bg-black select-none">
             <Navbar />
 
             
@@ -37,6 +38,7 @@ export const Root = () => {
             </div>
 
             
+            <Footer />
 
         </div> 
     )

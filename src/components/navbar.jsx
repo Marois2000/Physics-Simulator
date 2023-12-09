@@ -6,7 +6,7 @@ export const Navbar = () => {
     return (
 
         
-        <div className="w-full justify-start items-center p-10 flex gap-20 bg-black">
+        <div className="w-full justify-start items-center p-10 flex gap-20 bg-black select-none">
             <div className="transform transition duration-500 hover:scale-125 flex items-center">
                 <Link to={"/Physics-Simulator/"}>
                 <h1 className="text-white font-montserrat text-5xl font-black">Physics</h1>
