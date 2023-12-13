@@ -31,7 +31,7 @@ export const About = () => {
             <div className='flex flex-col items-end justify-start h-full'>
               <h1 className='text-3xl font-montserrat text-white text-right'> <u>The Physics Engine</u> </h1>
               <p className='text-xl font-montserrat text-white pt-5 max-w-[40ch] text-right'>
-                In order to simulate realistic physics we used a javascript physics library called <a href="https://brm.io/matter-js/"><u className=' font-semibold text-gray-400'>Matter JS</u></a> . <br /><br />
+                In order to simulate realistic physics we used a javascript physics library called <a target="_blank" href="https://brm.io/matter-js/"><u className=' font-semibold text-gray-400'>Matter JS</u></a> . <br /><br />
                 This is a full fledged physics engine built right into javascript that can simulate any 2D scenario you can think of!
               </p>
             </div>

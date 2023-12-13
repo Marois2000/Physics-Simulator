@@ -7,6 +7,7 @@ import { About } from './routes/about.jsx';
 import { SeeSaw } from './routes/seesaw.jsx';
 import { FloatingBall } from './routes/floatingball.jsx';
 import { Problems } from './routes/problems.jsx';
+import { Friction } from './routes/friction.jsx';
 
 const router = createBrowserRouter([{
     path: "/Physics-Simulator/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([{
   {
     path: "/Physics-Simulator/floatingball",
     element: <FloatingBall />
+  },
+  {
+    path: "/Physics-Simulator/friction",
+    element: <Friction />
   }
 ]);
 

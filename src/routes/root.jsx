@@ -7,6 +7,7 @@ import { Footer } from "../components/footer";
 // Image Imports
 import seesawIMG from "../images/SeeSaw.png";
 import ballfloatIMG from "../images/Ball Float.png";
+import cubeFriction from "../images/friction.png";
 
 
 
@@ -34,6 +35,7 @@ export const Root = () => {
                 <div className="flex w-full gap-20 flex-wrap justify-center items-center">
                     <ProblemCard link="/Physics-Simulator/seesaw" title="See Saw" desc="Can you figure out how the boxes will balance?" img={seesawIMG}/>
                     <ProblemCard link="/Physics-Simulator/floatingball" title="Ball Float" desc="Is the ball going to sink, float, or stay perfectly balanced?" img={ballfloatIMG}/>
+                    <ProblemCard link="/Physics-Simulator/friction" title="Block Push" desc="Find out how much force you need to push the block!" img={cubeFriction} />
                 </div>
             </div>
 

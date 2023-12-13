@@ -85,10 +85,11 @@ export const SeeSaw = (props) => {
   const runSim = () => {
     addSeeSaw(randomXLeft, randomMassLeft, randomXRight, massRight, false);
   }
+
   const checkAnswer = (userAnswer) => {
     clearSim();
-    addSeeSaw(randomXLeft,randomMassLeft,randomXRight,null,true);
-    if(userAnswer<(massRight*1000)+10&&userAnswer>(massRight*1000)-10){
+    if(userAnswer<=(massRight*1000)+10&&userAnswer>=(massRight*1000)-10){
+      addSeeSaw(randomXLeft,randomMassLeft,randomXRight,null,true);
       toast.success('You Got It! Great Job', {
         position: "top-center",
         autoClose: 5000,
@@ -101,8 +102,15 @@ export const SeeSaw = (props) => {
     });
     }
     else{
-      clearSim();
-      runSim();
+
+      if(userAnswer>(massRight*1000)+10) {
+        addSeeSaw(randomXLeft, randomMassLeft, randomXRight, massRight + 5, false);
+      }
+
+      if(userAnswer<(massRight*1000)-10) {
+        addSeeSaw(randomXLeft, randomMassLeft, randomXRight, massRight - 1, false);
+      }
+
       toast.error('That was wrong, try again!', {
         position: "top-center",
         autoClose: 5000,

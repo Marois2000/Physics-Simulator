@@ -485,7 +485,6 @@ export const CyclePhysics = () => {
     useEffect(() => {
         setTimeout(() => {
             setCurrentView((currentView + 1) % amountOfScenes);
-            console.log(currentView);
         }, 5000);
     })
 
